@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stash
+spec:
+  selector:
+    matchLabels:
+      app: stash
+  template:
+    metadata:
+      labels:
+        app: stash
+    spec:
+      containers:
+        - name: stash
+          image: stashapp/stash:0.22.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: STASH_STASH
+              value: /data/stash/
+            - name: STASH_GENERATED
+              value: /data/generated/
+            - name: STASH_METADATA
+              value: /data/metadata/
+            - name: STASH_CACHE
+              value: /data/cache/
+            - name: STASH_PORT
+              value: "8080"
+          # TODO: Liveness probe
+          # TODO: Readiness probe
+          volumeMounts:
+          - name: stash-data
+            mountPath: /data/
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 200m
+            limits:
+              memory: 256Mi
+              cpu: 500m
+      volumes:
+        - name: stash-data
+          persistentVolumeClaim:
+            claimName: stash

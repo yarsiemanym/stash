@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: stash
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Stash and supporting infrastructure.
+  sourceRepos:
+    - https://github.com/yarsiemanym/stash.git
+  destinations:
+    - namespace: stash
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: stash
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: stash
+  source:
+    repoURL: https://github.com/yarsiemanym/stash.git
+    targetRevision: HEAD
+    path: manifests
+    directory:
+      exclude: argocd.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: stash

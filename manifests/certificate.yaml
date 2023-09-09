@@ -1,0 +1,22 @@
+piVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: stash-cert
+  namespace: stash
+spec:
+  secretName: stash-cert
+  commonName: stash.home.saltrelli.com
+  dnsNames:
+    - stash.home.saltrelli.com
+  subject:
+    organizations:
+      - "Home"
+    organizationalUnits:
+      - "IT"
+  issuerRef:
+    name: acme-cluster-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+  privateKey:
+    algorithm: RSA
+    size: 4096

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stash
+  namespace: stash
+  annotations:
+    nginx.org/client-max-body-size: 512m
+    nginx.org/proxy-read-timeout: "300"
+    nginx.org/proxy-send-timeout: "300"
+spec:
+  tls:
+    - hosts:
+        - stash.home.saltrelli.com
+      secretName: stash-cert
+  rules:
+    - host: stash.home.saltrelli.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: stash
+                port: 
+                  number: 80
