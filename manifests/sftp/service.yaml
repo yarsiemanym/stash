@@ -4,7 +4,7 @@ metadata:
   name: sftp
   namespace: stash
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: ssh
       protocol: TCP
