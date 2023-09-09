@@ -27,8 +27,8 @@ spec:
             - name: stash-data
               mountPath: /home/ray/sftp
             - name: sftp-config
-              mountPath: /app/config/sftp.json
-              subPath: sftp.json
+              mountPath: /etc/sftp/users.conf
+              subPath: users.conf
       volumes:
         - name: stash-data
           persistentVolumeClaim:
