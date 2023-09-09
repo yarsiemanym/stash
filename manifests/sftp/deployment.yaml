@@ -35,4 +35,4 @@ spec:
             claimName: stash-data
         - name: sftp-config
           secret:
-            name: stash-sftp
+            secretName: stash-sftp
