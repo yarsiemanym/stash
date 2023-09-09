@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: stash
-          image: stashapp/stash:0.22.1
+          image: stashapp/stash:v0.22.1
           ports:
             - containerPort: 8080
           env:
