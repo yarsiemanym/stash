@@ -47,7 +47,7 @@ spec:
           - /bin/sh
         args:
           - -c
-          - cp /tmp/.stash/* /root/.stash/
+          - cp -r /tmp/.stash /root/.stash
         volumeMounts:
           - name: stash-config
             value:  /tmp/.stash
