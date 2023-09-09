@@ -26,13 +26,13 @@ spec:
           volumeMounts:
             - name: stash-data
               mountPath: /home/ray/sftp
-            - name: sftp-config
+            - name: stash-sftp
               mountPath: /etc/sftp/users.conf
               subPath: users.conf
       volumes:
         - name: stash-data
           persistentVolumeClaim:
             claimName: stash-data
-        - name: sftp-config
+        - name: stash-sftp
           secret:
             secretName: stash-sftp
