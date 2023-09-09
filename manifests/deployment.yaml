@@ -31,10 +31,10 @@ spec:
           # TODO: Liveness probe
           # TODO: Readiness probe
           volumeMounts:
+            - name: stash
+              mountPath: /root/.stash/
             - name: stash-data
               mountPath: /data/
-            - name: stash-config
-              mountPath: /root/.stash/
           resources:
             requests:
               memory: 128Mi
@@ -42,24 +42,27 @@ spec:
             limits:
               memory: 256Mi
               cpu: 500m
-      #initContainers:
-      #  - name: init
-      #    image: busybox:1.36
-      #    command:
-      #      - /bin/sh
-      ##    args:
-      #      - -c
-      #      - mkdir -p /root/.stash && cp -r /tmp/.stash/* /root/.stash/
-      #    volumeMounts:
-      #      - name: stash-config
-      ##        mountPath: /tmp/.stash
+      initContainers:
+        - name: init
+          image: busybox:1.36
+          command:
+            - /bin/sh
+          args:
+            - -c
+            - cp -r /tmp/.stash/config.yml /root/.stash/config.yml
+          volumeMounts:
+            - name: stash
+              mountPath: /root/.stash
+            - name: stash-config
+              mountPath: /tmp/.stash/config.yml
+              subPath: config.yml
       volumes:
+        - name: stash
+          persistentVolumeClaim:
+            claimName: stash
         - name: stash-data
           persistentVolumeClaim:
             claimName: stash-data
         - name: stash-config
-          persistentVolumeClaim:
-            claimName: stash-config
-      #  - name: stash-config
-      #    configMap:
-      #      name: stash
+          configMap:
+            name: stash

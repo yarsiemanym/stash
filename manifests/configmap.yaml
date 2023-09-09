@@ -1,7 +1,42 @@
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  name: stash
-#  namespace: stash
-#data:
-#  config.yml: |
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stash
+  namespace: stash
+data:
+  config.yml: |
+    blobs_storage: DATABASE
+    calculate_md5: false
+    create_image_clip_from_videos: false
+    dangerous_allow_public_without_auth: "false"
+    database: /data/stash-go.sqlite
+    gallery_cover_regex: (poster|cover|folder|board)\.[^\.]+$
+    generated: ""
+    host: 0.0.0.0
+    jwt_secret_key: f5b519b0c0f93f3bae9708f342e4482367768d3aa09140aaa3b6400d0f3e50ba
+    no_proxy: localhost,127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12
+    nobrowser: false
+    notifications_enabled: true
+    parallel_tasks: 1
+    plugins_path: /root/.stash/plugins
+    port: 9999
+    preview_audio: true
+    preview_exclude_end: "0"
+    preview_exclude_start: "0"
+    preview_segment_duration: 0.75
+    preview_segments: 12
+    scrapers_path: /root/.stash/scrapers
+    security_tripwire_accessed_from_public_internet: ""
+    sequential_scanning: false
+    session_store_key: f402e3c37447f9372d464f176432ed182f75f72355e0de9f370a3304e29a55bc
+    show_one_time_moved_notification: false
+    sound_on_preview: false
+    stash:
+    - path: /data/stash/
+      excludevideo: false
+      excludeimage: false
+    theme_color: '#202b33'
+    ui:
+      last_note_seen: 20230301
+    video_file_naming_algorithm: OSHASH
+    write_image_thumbnails: true
