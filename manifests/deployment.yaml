@@ -31,8 +31,10 @@ spec:
           # TODO: Liveness probe
           # TODO: Readiness probe
           volumeMounts:
-          - name: stash-data
-            mountPath: /data/
+            - name: stash-data
+              mountPath: /data/
+            - name: stash-config
+              mountPath: /root/.stash/
           resources:
             requests:
               memory: 128Mi
@@ -44,3 +46,6 @@ spec:
         - name: stash-data
           persistentVolumeClaim:
             claimName: stash
+        - name: stash-config
+          configMap:
+            name: stash
