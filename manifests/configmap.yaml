@@ -5,7 +5,8 @@ metadata:
   namespace: stash
 data:
   config.yml: |
-    blobs_storage: DATABASE
+    blobs_path: /data/blob
+    blobs_storage: FILESYSTEM
     calculate_md5: false
     create_image_clip_from_videos: false
     dangerous_allow_public_without_auth: "false"
