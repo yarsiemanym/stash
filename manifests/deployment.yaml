@@ -40,21 +40,21 @@ spec:
             limits:
               memory: 256Mi
               cpu: 500m
-      initContainers:
-        - name: init
-          image: busybox:1.36
-          command:
-            - /bin/sh
-          args:
-            - -c
-            - mkdir -p /root/.stash && cp -r /tmp/.stash/* /root/.stash/
-          volumeMounts:
-            - name: stash-config
-              mountPath: /tmp/.stash
+      #initContainers:
+      #  - name: init
+      #    image: busybox:1.36
+      #    command:
+      #      - /bin/sh
+      ##    args:
+      #      - -c
+      #      - mkdir -p /root/.stash && cp -r /tmp/.stash/* /root/.stash/
+      #    volumeMounts:
+      #      - name: stash-config
+      ##        mountPath: /tmp/.stash
       volumes:
         - name: stash-data
           persistentVolumeClaim:
             claimName: stash
-        - name: stash-config
-          configMap:
-            name: stash
+      #  - name: stash-config
+      #    configMap:
+      #      name: stash
