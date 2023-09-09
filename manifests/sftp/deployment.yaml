@@ -29,8 +29,8 @@ spec:
             - name: stash-sftp
               mountPath: /etc/sftp/users.conf
               subPath: users.conf
-          securityContext:
-            fsGroup: 0
+      securityContext:
+        fsGroup: 0
       volumes:
         - name: stash-data
           persistentVolumeClaim:
