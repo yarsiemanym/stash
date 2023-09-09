@@ -33,8 +33,6 @@ spec:
           volumeMounts:
             - name: stash-data
               mountPath: /data/
-            - name: stash-config
-              mountPath: /root/.stash/
           resources:
             requests:
               memory: 128Mi
