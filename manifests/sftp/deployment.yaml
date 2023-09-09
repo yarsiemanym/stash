@@ -25,7 +25,7 @@ spec:
             - containerPort: 22
           volumeMounts:
             - name: stash-data
-              mountPath: /home/ray/sftp
+              mountPath: /home/ray/
             - name: stash-sftp
               mountPath: /etc/sftp/users.conf
               subPath: users.conf

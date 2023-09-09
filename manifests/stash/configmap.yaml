@@ -33,7 +33,7 @@ data:
     show_one_time_moved_notification: false
     sound_on_preview: false
     stash:
-    - path: /data/stash/
+    - path: /data/media/
       excludevideo: false
       excludeimage: false
     theme_color: '#202b33'

@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: STASH_STASH
-              value: /data/stash/
+              value: /data/media/
             - name: STASH_GENERATED
               value: /data/generated/
             - name: STASH_METADATA
