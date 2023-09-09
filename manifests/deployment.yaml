@@ -33,6 +33,8 @@ spec:
           volumeMounts:
             - name: stash-data
               mountPath: /data/
+            - name: stash-config
+              mountPath: /root/.stash/
           resources:
             requests:
               memory: 128Mi
@@ -54,7 +56,10 @@ spec:
       volumes:
         - name: stash-data
           persistentVolumeClaim:
-            claimName: stash
+            claimName: stash-data
+        - name: stash-config
+          persistentVolumeClaim:
+            claimName: stash-config
       #  - name: stash-config
       #    configMap:
       #      name: stash
