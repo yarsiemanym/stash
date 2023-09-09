@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sftp
+spec:
+  selector:
+    matchLabels:
+      app: sftp
+  template:
+    metadata:
+      labels:
+        app: sftp
+    spec:
+      containers:
+        - name: atmoz
+          image: atmoz/sftp
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 200m
+            limits:
+              memory: 256Mi
+              cpu: 500m
+          ports:
+            - containerPort: 22
+          volumeMounts:
+            - name: stash-data
+              mountPath: /home/ray/sftp
+            - name: sftp-config
+              mountPath: /app/config/sftp.json
+              subPath: sftp.json
+      volumes:
+        - name: stash-data
+          persistentVolumeClaim:
+            claimName: stash-data
+        - name: sftp-config
+          configMap:
+            name: stash-sftp
