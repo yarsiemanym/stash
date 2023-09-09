@@ -34,5 +34,5 @@ spec:
           persistentVolumeClaim:
             claimName: stash-data
         - name: sftp-config
-          configMap:
+          secret:
             name: stash-sftp
